@@ -23,6 +23,9 @@ namespace Sirela.Models.DB
         public Nullable<System.DateTime> RowCreatedDateTime { get; set; }
         public int RowModifiedSYSUserID { get; set; }
         public Nullable<System.DateTime> RowModifiedDateTime { get; set; }
+        public string CampanyName { get; set; }
+        public string Cuit { get; set; }
+        public string Rubro { get; set; }
     
         public virtual SYSUser SYSUser { get; set; }
     }

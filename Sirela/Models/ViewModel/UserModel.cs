@@ -19,12 +19,21 @@ namespace Sirela.Models.ViewModel
         [Display(Name = "Password")]
         public string Password { get; set; }
         [Required(ErrorMessage = "*")]
+        [Display(Name = "Nombre de Empresa")]
+        public string CompanyName { get; set; }
+        [Required(ErrorMessage = "*")]
+        [Display(Name = "CUIT")]
+        public string Cuit { get; set; }
+        [Display(Name = "Rubro")]
+        public string Rubro { get; set; }
+        [Required(ErrorMessage = "*")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "*")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         public string Gender { get; set; }
+
     }
 
     public class UserLoginView
@@ -53,6 +62,15 @@ namespace Sirela.Models.ViewModel
         [Required(ErrorMessage = "*")]
         [Display(Name = "Password")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "*")]
+        [Display(Name = "Company Name")]
+        public string CompanyName { get; set; }
+        [Required(ErrorMessage = "*")]
+        [Display(Name = "Cuit")]
+        public string Cuit { get; set; }
+        [Required(ErrorMessage = "*")]
+        [Display(Name = "Rubro")]
+        public string Rubro { get; set; }
         [Required(ErrorMessage = "*")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }

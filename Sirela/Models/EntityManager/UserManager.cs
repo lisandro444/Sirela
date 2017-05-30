@@ -28,6 +28,9 @@ namespace Sirela.Models.EntityManager
 
                 SYSUserProfile SUP = new SYSUserProfile();
                 SUP.SYSUserID = SU.SYSUserID;
+                SUP.CampanyName = user.CompanyName;
+                SUP.Cuit = user.Cuit;
+                SUP.Rubro = user.Rubro;
                 SUP.FirstName = user.FirstName;
                 SUP.LastName = user.LastName;
                 SUP.Gender = user.Gender;
@@ -123,6 +126,7 @@ namespace Sirela.Models.EntityManager
             }
             return 0;
         }
+
         public List<UserProfileView> GetAllUserProfiles()
         {
             List<UserProfileView> profiles = new List<UserProfileView>();
@@ -138,9 +142,12 @@ namespace Sirela.Models.EntityManager
                     UPV.LoginName = u.LoginName;
                     UPV.Password = u.PasswordEncryptedText;
 
-                    var SUP = db.SYSUserProfile.Find(u.SYSUserID);
+                    var SUP = db.SYSUserProfile.Where(o => o.SYSUserID.Equals(u.SYSUserID)).FirstOrDefault();
                     if (SUP != null)
                     {
+                        UPV.CompanyName = SUP.CampanyName;
+                        UPV.Cuit = SUP.Cuit;
+                        UPV.Rubro = SUP.Rubro;
                         UPV.FirstName = SUP.FirstName;
                         UPV.LastName = SUP.LastName;
                         UPV.Gender = SUP.Gender;
@@ -202,6 +209,87 @@ namespace Sirela.Models.EntityManager
                 Gender = genders
             };
             return UDV;
+        }
+
+        public void UpdateUserAccount(UserProfileView user)
+        {
+
+            using (SirelaDBEntities db = new SirelaDBEntities())
+            {
+                using (var dbContextTransaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+
+                        SYSUser SU = db.SYSUser.Find(user.SYSUserID);
+                        SU.LoginName = user.LoginName;
+                        SU.PasswordEncryptedText = user.Password;
+                        SU.RowCreatedSYSUserID = user.SYSUserID;
+                        SU.RowModifiedSYSUserID = user.SYSUserID;
+                        SU.RowCreatedDateTime = DateTime.Now;
+                        SU.RowMOdifiedDateTime = DateTime.Now;
+
+                        db.SaveChanges();
+
+                        var userProfile = db.SYSUserProfile.Where(o => o.SYSUserID == user.SYSUserID);
+                        if (userProfile.Any())
+                        {
+                            SYSUserProfile SUP = userProfile.FirstOrDefault();
+                            SUP.SYSUserID = SU.SYSUserID;
+                            SUP.CampanyName = user.CompanyName;
+                            SUP.Cuit = user.Cuit;
+                            SUP.Rubro = user.Rubro;
+                            SUP.FirstName = user.FirstName;
+                            SUP.LastName = user.LastName;
+                            SUP.Gender = user.Gender;
+                            SUP.RowCreatedSYSUserID = user.SYSUserID;
+                            SUP.RowModifiedSYSUserID = user.SYSUserID;
+                            SUP.RowCreatedDateTime = DateTime.Now;
+                            SUP.RowModifiedDateTime = DateTime.Now;
+                            
+                  
+
+                            db.SaveChanges();
+                        }
+
+                        if (user.LOOKUPRoleID > 0)
+                        {
+                            var userRole = db.SYSUserRole.Where(o => o.SYSUserID == user.SYSUserID);
+                            SYSUserRole SUR = null;
+                            if (userRole.Any())
+                            {
+                                SUR = userRole.FirstOrDefault();
+                                SUR.LOOKUPRoleID = user.LOOKUPRoleID;
+                                SUR.SYSUserID = user.SYSUserID;
+                                SUR.IsActive = true;
+                                SUR.RowCreatedSYSUserID = user.SYSUserID;
+                                SUR.RowModifiedSYSUserID = user.SYSUserID;
+                                SUR.RowCreatedDateTime = DateTime.Now;
+                                SUR.RowModifiedDateTime = DateTime.Now;
+                            }
+                            else
+                            {
+                                SUR = new SYSUserRole();
+                                SUR.LOOKUPRoleID = user.LOOKUPRoleID;
+                                SUR.SYSUserID = user.SYSUserID;
+                                SUR.IsActive = true;
+                                SUR.RowCreatedSYSUserID = user.SYSUserID;
+                                SUR.RowModifiedSYSUserID = user.SYSUserID;
+                                SUR.RowCreatedDateTime = DateTime.Now;
+                                SUR.RowModifiedDateTime = DateTime.Now;
+                                db.SYSUserRole.Add(SUR);
+                            }
+
+                            db.SaveChanges();
+                        }
+                        dbContextTransaction.Commit();
+                    }
+                    catch
+                    {
+                        dbContextTransaction.Rollback();
+                    }
+                }
+            }
         }
 
     }
