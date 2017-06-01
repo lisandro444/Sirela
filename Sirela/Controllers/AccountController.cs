@@ -1,5 +1,6 @@
 ﻿using Sirela.Models.EntityManager;
 using Sirela.Models.ViewModel;
+using Sirela.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Sirela.Controllers
                 {
                     UM.AddUserAccount(USV);
                     FormsAuthentication.SetAuthCookie(USV.FirstName, false);
-                    return RedirectToAction("Welcome", "Home");
+                    return RedirectToAction("Index", "Home");
 
                 }
                 else
@@ -59,7 +60,7 @@ namespace Sirela.Controllers
                     if (ULV.Password.Equals(password))
                     {
                         FormsAuthentication.SetAuthCookie(ULV.LoginName, false);
-                        return RedirectToAction("Welcome", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -79,5 +80,16 @@ namespace Sirela.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+        #region Administrar
+        [Authorize]
+        [AuthorizeRoles("Admin")]
+        public ActionResult Administrar()
+        {
+            return View();
+        }
+
+
+        #endregion
     }
 }
