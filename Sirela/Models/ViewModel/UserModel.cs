@@ -1,39 +1,52 @@
-﻿using System;
+﻿using Sirela.Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Sirela.Models.ViewModel
 {
-    public class UserSignUpView
+    public class UserSignUpView : IValidatableObject
     {
         [Key]
         public int SYSUserID { get; set; }
+
         public int LOOKUPRoleID { get; set; }
         public string RoleName { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Login ID")]
         public string LoginName { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Nombre de Empresa")]
         public string CompanyName { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "CUIT")]
         public string Cuit { get; set; }
+
         [Display(Name = "Rubro")]
         public string Rubro { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
         public string Gender { get; set; }
 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (!CuitValidator.Validate(Cuit))
+                yield return new ValidationResult("El CUIT es inválido", new[] { nameof(Cuit) });
+        }
     }
 
     public class UserLoginView
@@ -53,30 +66,41 @@ namespace Sirela.Models.ViewModel
     {
         [Key]
         public int SYSUserID { get; set; }
+
         public int LOOKUPRoleID { get; set; }
+
         public string RoleName { get; set; }
+
         public bool? IsRoleActive { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Login ID")]
         public string LoginName { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Cuit")]
         public string Cuit { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Rubro")]
         public string Rubro { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
         public string Gender { get; set; }
     }
 
