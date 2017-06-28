@@ -18,15 +18,12 @@ namespace Sirela.Security
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             bool authorize = false;
-            using (SirelaDBEntities db = new SirelaDBEntities())
+            UserManager UM = new UserManager();
+            foreach (var roles in userAssignedRoles)
             {
-                UserManager UM = new UserManager();
-                foreach (var roles in userAssignedRoles)
-                {
-                    authorize = UM.IsUserInRole(httpContext.User.Identity.Name, roles);
-                    if (authorize)
-                        return authorize;
-                }
+                authorize = UM.IsUserInRole(httpContext.User.Identity.Name, roles);
+                if (authorize)
+                    return authorize;
             }
             return authorize;
         }
