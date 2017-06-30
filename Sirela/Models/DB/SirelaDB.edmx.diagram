@@ -5,14 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8ad0355bc7564d24ac903262e784da82" Name="Diagram1" ZoomLevel="87">
-        <EntityTypeShape EntityType="SirelaDBModel.LOOKUPRole" Width="1.5" PointX="9.625" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SirelaDBModel.LOOKUPRole" Width="1.5" PointX="12.125" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SirelaDBModel.SYSUser" Width="2" PointX="1.25" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SirelaDBModel.SYSUserProfile" Width="1.875" PointX="4.5" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SirelaDBModel.SYSUserRole" Width="1.5" PointX="7" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SirelaDBModel.SYSUserRole" Width="1.5" PointX="8.25" PointY="1.875" IsExpanded="true" />
         <AssociationConnector Association="SirelaDBModel.FK__SYSUserRo__LOOKU__34C8D9D1" ManuallyRouted="false" />
         <AssociationConnector Association="SirelaDBModel.FK__SYSUserPr__SYSUs__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="SirelaDBModel.FK__SYSUserRo__SYSUs__35BCFE0A" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="SirelaDBModel.Rubros" Width="2.625" PointX="9" PointY="5.5" />
+        <AssociationConnector Association="SirelaDBModel.FK_SYSUserProfile_Rubros" />
+        <EntityTypeShape EntityType="SirelaDBModel.ReferenciasLaborales" Width="2.375" PointX="0.5" PointY="8.875" />
+        <AssociationConnector Association="SirelaDBModel.FK__Referenci__SYSUs__3A81B327" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

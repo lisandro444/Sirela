@@ -12,18 +12,12 @@ namespace Sirela.Models.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class SYSUserRole
+    public partial class ReferenciasLaborales
     {
-        public int SYSUserRoleID { get; set; }
-        public int SYSUserID { get; set; }
-        public int LOOKUPRoleID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public int RowCreatedSYSUserID { get; set; }
-        public Nullable<System.DateTime> RowCreatedDateTime { get; set; }
-        public int RowModifiedSYSUserID { get; set; }
-        public Nullable<System.DateTime> RowModifiedDateTime { get; set; }
+        public int Id { get; set; }
+        public string Referencia { get; set; }
+        public Nullable<int> SYSUserID { get; set; }
     
-        public virtual LOOKUPRole LOOKUPRole { get; set; }
         public virtual SYSUser SYSUser { get; set; }
     }
 }

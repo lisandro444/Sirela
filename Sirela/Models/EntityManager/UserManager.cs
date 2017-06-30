@@ -28,9 +28,9 @@ namespace Sirela.Models.EntityManager
 
                 SYSUserProfile SUP = new SYSUserProfile();
                 SUP.SYSUserID = SU.SYSUserID;
-                SUP.CampanyName = user.CompanyName;
+                SUP.CompanyName = user.CompanyName;
                 SUP.Cuit = user.Cuit;
-                SUP.Rubro = user.Rubro;
+                //SUP.IdRubro = user.Rubro;
                 SUP.FirstName = user.FirstName;
                 SUP.LastName = user.LastName;
                 SUP.Gender = user.Gender;
@@ -145,9 +145,9 @@ namespace Sirela.Models.EntityManager
                     var SUP = db.SYSUserProfile.Where(o => o.SYSUserID.Equals(u.SYSUserID)).FirstOrDefault();
                     if (SUP != null)
                     {
-                        UPV.CompanyName = SUP.CampanyName;
+                        UPV.CompanyName = SUP.CompanyName;
                         UPV.Cuit = SUP.Cuit;
-                        UPV.Rubro = SUP.Rubro;
+                  //      UPV.Rubro = SUP.Rubro;
                         UPV.FirstName = SUP.FirstName;
                         UPV.LastName = SUP.LastName;
                         UPV.Gender = SUP.Gender;
@@ -236,9 +236,9 @@ namespace Sirela.Models.EntityManager
                         {
                             SYSUserProfile SUP = userProfile.FirstOrDefault();
                             SUP.SYSUserID = SU.SYSUserID;
-                            SUP.CampanyName = user.CompanyName;
+                            SUP.CompanyName = user.CompanyName;
                             SUP.Cuit = user.Cuit;
-                            SUP.Rubro = user.Rubro;
+                           // SUP.Rubro = user.Rubro;
                             SUP.FirstName = user.FirstName;
                             SUP.LastName = user.LastName;
                             SUP.Gender = user.Gender;

@@ -157,6 +157,12 @@
     <Compile Include="Models\DB\LOOKUPRole.cs">
       <DependentUpon>SirelaDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DB\ReferenciasLaborales.cs">
+      <DependentUpon>SirelaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\Rubros.cs">
+      <DependentUpon>SirelaDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\SirelaDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

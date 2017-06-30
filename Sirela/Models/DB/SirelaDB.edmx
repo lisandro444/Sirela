@@ -4,116 +4,165 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SirelaDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="SirelaDBModelStoreContainer">
-    <EntitySet Name="LOOKUPRole" EntityType="SirelaDBModel.Store.LOOKUPRole" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SYSUser" EntityType="SirelaDBModel.Store.SYSUser" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SYSUserProfile" EntityType="SirelaDBModel.Store.SYSUserProfile" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SYSUserRole" EntityType="SirelaDBModel.Store.SYSUserRole" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK__SYSUserRo__LOOKU__34C8D9D1" Association="SirelaDBModel.Store.FK__SYSUserRo__LOOKU__34C8D9D1">
-      <End Role="LOOKUPRole" EntitySet="LOOKUPRole" />
-      <End Role="SYSUserRole" EntitySet="SYSUserRole" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SYSUserPr__SYSUs__2F10007B" Association="SirelaDBModel.Store.FK__SYSUserPr__SYSUs__2F10007B">
-      <End Role="SYSUser" EntitySet="SYSUser" />
-      <End Role="SYSUserProfile" EntitySet="SYSUserProfile" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SYSUserRo__SYSUs__35BCFE0A" Association="SirelaDBModel.Store.FK__SYSUserRo__SYSUs__35BCFE0A">
-      <End Role="SYSUser" EntitySet="SYSUser" />
-      <End Role="SYSUserRole" EntitySet="SYSUserRole" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="LOOKUPRole">
-    <Key>
-      <PropertyRef Name="LOOKUPRoleID" />
-    </Key>
-    <Property Name="LOOKUPRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RoleName" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="RoleDescription" Type="varchar" Nullable="true" MaxLength="500" />
-    <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
-    <Property Name="RowCreatedDateTime" Type="datetime" Nullable="true" />
-    <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
-    <Property Name="RowModifiedDateTime" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="SYSUser">
-    <Key>
-      <PropertyRef Name="SYSUserID" />
-    </Key>
-    <Property Name="SYSUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="LoginName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="PasswordEncryptedText" Type="varchar" Nullable="false" MaxLength="200" />
-    <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
-    <Property Name="RowCreatedDateTime" Type="datetime" Nullable="true" />
-    <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
-    <Property Name="RowMOdifiedDateTime" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="SYSUserProfile">
-    <Key>
-      <PropertyRef Name="SYSUserProfileID" />
-    </Key>
-    <Property Name="SYSUserProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SYSUserID" Type="int" Nullable="false" />
-    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Gender" Type="char" Nullable="false" MaxLength="1" />
-    <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
-    <Property Name="RowCreatedDateTime" Type="datetime" Nullable="true" />
-    <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
-    <Property Name="RowModifiedDateTime" Type="datetime" Nullable="true" />
-    <Property Name="CampanyName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Cuit" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Rubro" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SYSUserRole">
-    <Key>
-      <PropertyRef Name="SYSUserRoleID" />
-    </Key>
-    <Property Name="SYSUserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SYSUserID" Type="int" Nullable="false" />
-    <Property Name="LOOKUPRoleID" Type="int" Nullable="false" />
-    <Property Name="IsActive" Type="bit" Nullable="true" />
-    <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
-    <Property Name="RowCreatedDateTime" Type="datetime" Nullable="true" />
-    <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
-    <Property Name="RowModifiedDateTime" Type="datetime" Nullable="true" />
-  </EntityType>
-  <Association Name="FK__SYSUserRo__LOOKU__34C8D9D1">
-    <End Role="LOOKUPRole" Type="SirelaDBModel.Store.LOOKUPRole" Multiplicity="1" />
-    <End Role="SYSUserRole" Type="SirelaDBModel.Store.SYSUserRole" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LOOKUPRole">
-        <PropertyRef Name="LOOKUPRoleID" />
-      </Principal>
-      <Dependent Role="SYSUserRole">
-        <PropertyRef Name="LOOKUPRoleID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SYSUserPr__SYSUs__2F10007B">
-    <End Role="SYSUser" Type="SirelaDBModel.Store.SYSUser" Multiplicity="1" />
-    <End Role="SYSUserProfile" Type="SirelaDBModel.Store.SYSUserProfile" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SYSUser">
-        <PropertyRef Name="SYSUserID" />
-      </Principal>
-      <Dependent Role="SYSUserProfile">
-        <PropertyRef Name="SYSUserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__SYSUserRo__SYSUs__35BCFE0A">
-    <End Role="SYSUser" Type="SirelaDBModel.Store.SYSUser" Multiplicity="1" />
-    <End Role="SYSUserRole" Type="SirelaDBModel.Store.SYSUserRole" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SYSUser">
-        <PropertyRef Name="SYSUserID" />
-      </Principal>
-      <Dependent Role="SYSUserRole">
-        <PropertyRef Name="SYSUserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="SirelaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LOOKUPRole">
+          <Key>
+            <PropertyRef Name="LOOKUPRoleID" />
+          </Key>
+          <Property Name="LOOKUPRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="100" />
+          <Property Name="RoleDescription" Type="varchar" MaxLength="500" />
+          <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="datetime" />
+          <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ReferenciasLaborales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Referencia" Type="nvarchar(max)" />
+          <Property Name="SYSUserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Rubros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SYSUser">
+          <Key>
+            <PropertyRef Name="SYSUserID" />
+          </Key>
+          <Property Name="SYSUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordEncryptedText" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="datetime" />
+          <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowMOdifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SYSUserProfile">
+          <Key>
+            <PropertyRef Name="SYSUserProfileID" />
+          </Key>
+          <Property Name="SYSUserProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SYSUserID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="datetime" />
+          <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="datetime" />
+          <Property Name="CampanyName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cuit" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdRubro" Type="int" />
+        </EntityType>
+        <EntityType Name="SYSUserRole">
+          <Key>
+            <PropertyRef Name="SYSUserRoleID" />
+          </Key>
+          <Property Name="SYSUserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SYSUserID" Type="int" Nullable="false" />
+          <Property Name="LOOKUPRoleID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="datetime" />
+          <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Referenci__SYSUs__3A81B327">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="0..1" />
+          <End Role="ReferenciasLaborales" Type="Self.ReferenciasLaborales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="ReferenciasLaborales">
+              <PropertyRef Name="SYSUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserPr__SYSUs__2F10007B">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSUserProfile" Type="Self.SYSUserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="SYSUserProfile">
+              <PropertyRef Name="SYSUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__LOOKU__34C8D9D1">
+          <End Role="LOOKUPRole" Type="Self.LOOKUPRole" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOOKUPRole">
+              <PropertyRef Name="LOOKUPRoleID" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="LOOKUPRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__SYSUs__35BCFE0A">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="SYSUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYSUserProfile_Rubros">
+          <End Role="Rubros" Type="Self.Rubros" Multiplicity="0..1" />
+          <End Role="SYSUserProfile" Type="Self.SYSUserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SYSUserProfile">
+              <PropertyRef Name="IdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SirelaDBModelStoreContainer">
+          <EntitySet Name="LOOKUPRole" EntityType="Self.LOOKUPRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReferenciasLaborales" EntityType="Self.ReferenciasLaborales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rubros" EntityType="Self.Rubros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUser" EntityType="Self.SYSUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUserProfile" EntityType="Self.SYSUserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUserRole" EntityType="Self.SYSUserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Referenci__SYSUs__3A81B327" Association="Self.FK__Referenci__SYSUs__3A81B327">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="ReferenciasLaborales" EntitySet="ReferenciasLaborales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserPr__SYSUs__2F10007B" Association="Self.FK__SYSUserPr__SYSUs__2F10007B">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="SYSUserProfile" EntitySet="SYSUserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__LOOKU__34C8D9D1" Association="Self.FK__SYSUserRo__LOOKU__34C8D9D1">
+            <End Role="LOOKUPRole" EntitySet="LOOKUPRole" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__SYSUs__35BCFE0A" Association="Self.FK__SYSUserRo__SYSUs__35BCFE0A">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYSUserProfile_Rubros" Association="Self.FK_SYSUserProfile_Rubros">
+            <End Role="Rubros" EntitySet="Rubros" />
+            <End Role="SYSUserProfile" EntitySet="SYSUserProfile" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SirelaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -143,6 +192,7 @@
           <Property Name="RowMOdifiedDateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SYSUserProfile" Relationship="Self.FK__SYSUserPr__SYSUs__2F10007B" FromRole="SYSUser" ToRole="SYSUserProfile" />
           <NavigationProperty Name="SYSUserRole" Relationship="Self.FK__SYSUserRo__SYSUs__35BCFE0A" FromRole="SYSUser" ToRole="SYSUserRole" />
+          <NavigationProperty Name="ReferenciasLaborales" Relationship="SirelaDBModel.FK__Referenci__SYSUs__3A81B327" FromRole="SYSUser" ToRole="ReferenciasLaborales" />
         </EntityType>
         <EntityType Name="SYSUserProfile">
           <Key>
@@ -158,9 +208,10 @@
           <Property Name="RowModifiedSYSUserID" Type="Int32" Nullable="false" />
           <Property Name="RowModifiedDateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SYSUser" Relationship="Self.FK__SYSUserPr__SYSUs__2F10007B" FromRole="SYSUserProfile" ToRole="SYSUser" />
-          <Property Name="CampanyName" Type="String" Nullable="false" />
-          <Property Name="Cuit" Type="String" Nullable="false" />
-          <Property Name="Rubro" Type="String" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Cuit" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="IdRubro" Type="Int32" />
+          <NavigationProperty Name="Rubros" Relationship="SirelaDBModel.FK_SYSUserProfile_Rubros" FromRole="SYSUserProfile" ToRole="Rubros" />
         </EntityType>
         <EntityType Name="SYSUserRole">
           <Key>
@@ -230,8 +281,59 @@
             <End Role="SYSUser" EntitySet="SYSUser" />
             <End Role="SYSUserRole" EntitySet="SYSUserRole" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="Rubros" EntityType="SirelaDBModel.Rubros" />
+          <AssociationSet Name="FK_SYSUserProfile_Rubros" Association="SirelaDBModel.FK_SYSUserProfile_Rubros">
+            <End Role="Rubros" EntitySet="Rubros" />
+            <End Role="SYSUserProfile" EntitySet="SYSUserProfile" />
+          </AssociationSet>
+          <EntitySet Name="ReferenciasLaborales" EntityType="SirelaDBModel.ReferenciasLaborales" />
+          <AssociationSet Name="FK__Referenci__SYSUs__3A81B327" Association="SirelaDBModel.FK__Referenci__SYSUs__3A81B327">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="ReferenciasLaborales" EntitySet="ReferenciasLaborales" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Rubros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYSUserProfile" Relationship="SirelaDBModel.FK_SYSUserProfile_Rubros" FromRole="Rubros" ToRole="SYSUserProfile" />
+          </EntityType>
+        <Association Name="FK_SYSUserProfile_Rubros">
+          <End Type="SirelaDBModel.Rubros" Role="Rubros" Multiplicity="0..1" />
+          <End Type="SirelaDBModel.SYSUserProfile" Role="SYSUserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SYSUserProfile">
+              <PropertyRef Name="IdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ReferenciasLaborales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Referencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SYSUserID" Type="Int32" />
+          <NavigationProperty Name="SYSUser" Relationship="SirelaDBModel.FK__Referenci__SYSUs__3A81B327" FromRole="ReferenciasLaborales" ToRole="SYSUser" />
+        </EntityType>
+        <Association Name="FK__Referenci__SYSUs__3A81B327">
+          <End Type="SirelaDBModel.SYSUser" Role="SYSUser" Multiplicity="0..1" />
+          <End Type="SirelaDBModel.ReferenciasLaborales" Role="ReferenciasLaborales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="ReferenciasLaborales">
+              <PropertyRef Name="SYSUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -266,7 +368,8 @@
     <EntitySetMapping Name="SYSUserProfile">
       <EntityTypeMapping TypeName="IsTypeOf(SirelaDBModel.SYSUserProfile)">
         <MappingFragment StoreEntitySet="SYSUserProfile">
-          <ScalarProperty Name="SYSUserProfileID" ColumnName="SYSUserProfileID" />
+          <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+                <ScalarProperty Name="SYSUserProfileID" ColumnName="SYSUserProfileID" />
           <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -275,16 +378,15 @@
           <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
           <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
           <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
-          <ScalarProperty Name="CampanyName" ColumnName="CampanyName" />
+          <ScalarProperty Name="CompanyName" ColumnName="CampanyName" />
           <ScalarProperty Name="Cuit" ColumnName="Cuit" />
-          <ScalarProperty Name="Rubro" ColumnName="Rubro" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SYSUserRole">
       <EntityTypeMapping TypeName="IsTypeOf(SirelaDBModel.SYSUserRole)">
         <MappingFragment StoreEntitySet="SYSUserRole">
-          <ScalarProperty Name="SYSUserRoleID" ColumnName="SYSUserRoleID" />
+                <ScalarProperty Name="SYSUserRoleID" ColumnName="SYSUserRoleID" />
           <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
           <ScalarProperty Name="LOOKUPRoleID" ColumnName="LOOKUPRoleID" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -295,6 +397,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="Rubros">
+            <EntityTypeMapping TypeName="SirelaDBModel.Rubros">
+              <MappingFragment StoreEntitySet="Rubros">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferenciasLaborales">
+            <EntityTypeMapping TypeName="SirelaDBModel.ReferenciasLaborales">
+              <MappingFragment StoreEntitySet="ReferenciasLaborales">
+                <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

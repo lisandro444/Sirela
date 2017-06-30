@@ -12,23 +12,18 @@ namespace Sirela.Models.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class LOOKUPRole
+    public partial class Rubros
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LOOKUPRole()
+        public Rubros()
         {
-            this.SYSUserRole = new HashSet<SYSUserRole>();
+            this.SYSUserProfile = new HashSet<SYSUserProfile>();
         }
     
-        public int LOOKUPRoleID { get; set; }
-        public string RoleName { get; set; }
-        public string RoleDescription { get; set; }
-        public int RowCreatedSYSUserID { get; set; }
-        public Nullable<System.DateTime> RowCreatedDateTime { get; set; }
-        public int RowModifiedSYSUserID { get; set; }
-        public Nullable<System.DateTime> RowModifiedDateTime { get; set; }
+        public int Id { get; set; }
+        public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SYSUserRole> SYSUserRole { get; set; }
+        public virtual ICollection<SYSUserProfile> SYSUserProfile { get; set; }
     }
 }
